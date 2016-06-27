@@ -1,0 +1,14 @@
+Package: RppsWrangler
+Type: Package
+Title: Pacote para importação de dados relativos aos RPPS
+Version: 0.1.0
+Author: Bruno M. S. S. Melo
+Maintainer: Bruno M. S. S. Melo <ctbrunomelo@gmail.com>
+Description: Este pacote disponibiliza funções cujo o objetivo é o de
+    permitir a importação de dados relativos aos Regimes Próprios de Previdência
+    Social disponíveis para livre consulta no site do Ministério do Trabalho e
+    Previdência Social.
+Imports: tabulizer, stringr
+License: GPL-3
+LazyData: TRUE
+RoxygenNote: 5.0.1
