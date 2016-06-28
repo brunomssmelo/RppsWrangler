@@ -1,8 +1,8 @@
-#' Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social
+#' Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social.
 #'
 #' Esta funcao extrai os dados contidos no Demonstrativo de Aplicacoes e Investimentos dos Recursos (DAIR)
 #' dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, no site  do Min. do Trabalho e
-#' Previdencia Social
+#' Previdencia Social.
 #'
 #' @param arqDair uma string contendo o nome do arquivo pdf correspondente ao "DAIR".
 #' @return um objeto do tipo data.frame contendo a relacao das aplicacoes financeiras do RPPS.

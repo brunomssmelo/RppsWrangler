@@ -2,7 +2,7 @@
 % Please edit documentation in R/mtpsImportaDair.R
 \name{mtpsImportaDair}
 \alias{mtpsImportaDair}
-\title{Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social}
+\title{Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social.}
 \usage{
 mtpsImportaDair(arqDair)
 }
@@ -15,7 +15,7 @@ um objeto do tipo data.frame contendo a relacao das aplicacoes financeiras do RP
 \description{
 Esta funcao extrai os dados contidos no Demonstrativo de Aplicacoes e Investimentos dos Recursos (DAIR)
 dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, no site  do Min. do Trabalho e
-Previdencia Social
+Previdencia Social.
 }
 \details{
 Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.

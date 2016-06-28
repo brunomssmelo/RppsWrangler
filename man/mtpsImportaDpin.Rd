@@ -2,7 +2,7 @@
 % Please edit documentation in R/mtpsImportaDpin.R
 \name{mtpsImportaDpin}
 \alias{mtpsImportaDpin}
-\title{Importacao de dados contidos no Demonstrativo da Politica de Investimentos (DPIN)}
+\title{Importacao de dados contidos no Demonstrativo da Politica de Investimentos (DPIN).}
 \usage{
 mtpsImportaDpin(arqDpin)
 }
@@ -26,7 +26,7 @@ dfDpin <- mtpsImportaDpin("DPIN.pdf")
 }
 }
 \author{
-Bruno M. S. S Melo
+Bruno M. S. S. Melo
 }
 \seealso{
 \code{tabulizer::extract_tables}
