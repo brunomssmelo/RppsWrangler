@@ -9,7 +9,9 @@
 #' @author Bruno M. S. S Melo
 #' @details
 #' Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
-#' @seealso \code{extract_tables}
+#' @examples
+#' mtpsImportaDair("dair.pdf")
+#' @seealso \code{tabulizer::extract_tables}
 #' @export
 mtpsImportaDair <- function(arqDair) {
 
@@ -59,7 +61,7 @@ mtpsImportaDair <- function(arqDair) {
 
         text <- ifelse(a < numAplicacoes,
                        stringr::str_sub(fullText, posAplicacoes[a,1], posAplicacoes[a+1,1]-1),
-                       stringr::str_sub(fullText, posAplicacoes[a,1], length(fullText)))
+                       stringr::str_sub(fullText, posAplicacoes[a,1], nchar(fullText)))
 
 
         # Localiza a posição dos tokens
