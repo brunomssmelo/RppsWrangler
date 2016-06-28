@@ -1,4 +1,4 @@
-#' Importacao de dados contidos no Demonstrativo da Politica de Investimentos (DPIN).
+#' Importacao de dados contidos no Demonstrativo da Politica de Investimentos (DPIN)
 #'
 #' Esta funcao extrai os dados contidos no Demonstrativo da Politica de Investimentos (DPIN)
 #' dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, nos sites de alguns
@@ -6,11 +6,7 @@
 #'
 #' @param arqDpin uma string contendo o nome do arquivo pdf correspondente ao "DPIN".
 #' @return um objeto do tipo data.frame contendo o resumo da politica de investimentos do RPPS.
-<<<<<<< HEAD
-#' @author Bruno M. S. S. Melo
-=======
 #' @author Bruno M. S. S Melo
->>>>>>> origin/master
 #' @details
 #' A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
 #' @examples
