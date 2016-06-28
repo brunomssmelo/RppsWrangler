@@ -20,10 +20,15 @@ Previdencia Social
 \details{
 Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
 }
+\examples{
+\dontrun{
+dfDair <- mtpsImportaDair("DAIR.pdf")
+}
+}
 \author{
-Bruno M. S. S Melo
+Bruno M. S. S. Melo
 }
 \seealso{
-\code{extract_tables}
+\code{tabulizer::extract_tables}
 }
 

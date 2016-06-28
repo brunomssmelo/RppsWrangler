@@ -7,10 +7,10 @@
 mtpsImportaDpin(arqDpin)
 }
 \arguments{
-\item{arqDpin}{- uma string contendo o nome do arquivo pdf correspondente ao "DPIN".}
+\item{arqDpin}{uma string contendo o nome do arquivo pdf correspondente ao "DPIN".}
 }
 \value{
-um objeto do tipo data.frame contendo a politica de alocacao das aplicacoes financeiras do RPPS.
+um objeto do tipo data.frame contendo o resumo da politica de investimentos do RPPS.
 }
 \description{
 Esta funcao extrai os dados contidos no Demonstrativo da Politica de Investimentos (DPIN)
@@ -18,12 +18,17 @@ dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, nos 
 Institutos de Previdencia de entes federativos que possuem RPPS.
 }
 \details{
-Ainda em desenvolvimento.
+A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
+}
+\examples{
+\dontrun{
+dfDpin <- mtpsImportaDpin("DPIN.pdf")
+}
 }
 \author{
 Bruno M. S. S Melo
 }
 \seealso{
-\code{extract_tables}
+\code{tabulizer::extract_tables}
 }
 
