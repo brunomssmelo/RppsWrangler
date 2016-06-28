@@ -6,7 +6,11 @@
 #'
 #' @param arqDpin uma string contendo o nome do arquivo pdf correspondente ao "DPIN".
 #' @return um objeto do tipo data.frame contendo o resumo da politica de investimentos do RPPS.
+<<<<<<< HEAD
 #' @author Bruno M. S. S. Melo
+=======
+#' @author Bruno M. S. S Melo
+>>>>>>> origin/master
 #' @details
 #' A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
 #' @examples
