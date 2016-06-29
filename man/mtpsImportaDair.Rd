@@ -4,10 +4,12 @@
 \alias{mtpsImportaDair}
 \title{Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social.}
 \usage{
-mtpsImportaDair(arqDair)
+mtpsImportaDair(arqNome)
 }
 \arguments{
-\item{arqDair}{uma string contendo o nome do arquivo pdf correspondente ao "DAIR".}
+\item{arqNome}{uma string contendo o nome do arquivo correspondente ao "DAIR".}
+
+\item{arqTipo}{uma string contendo o tipo do arquivo de origem (pdf ou xml)}
 }
 \value{
 um objeto do tipo data.frame contendo a relacao das aplicacoes financeiras do RPPS.
@@ -19,6 +21,7 @@ Previdencia Social.
 }
 \details{
 Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
+OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
 }
 \examples{
 \dontrun{

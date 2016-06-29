@@ -4,10 +4,12 @@
 \alias{mtpsImportaDpin}
 \title{Importacao de dados contidos no Demonstrativo da Politica de Investimentos (DPIN)}
 \usage{
-mtpsImportaDpin(arqDpin)
+mtpsImportaDpin(arqNome, arqTipo)
 }
 \arguments{
-\item{arqDpin}{uma string contendo o nome do arquivo pdf correspondente ao "DPIN".}
+\item{arqNome}{uma string contendo o nome do arquivo correspondente ao "DPIN".}
+
+\item{arqTipo}{uma string contendo o tipo do arquivo de origem (pdf ou xml)}
 }
 \value{
 um objeto do tipo data.frame contendo o resumo da politica de investimentos do RPPS.
@@ -19,6 +21,7 @@ Institutos de Previdencia de entes federativos que possuem RPPS.
 }
 \details{
 A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
+OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
 }
 \examples{
 \dontrun{
