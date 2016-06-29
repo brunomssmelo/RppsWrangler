@@ -4,20 +4,22 @@
 #' dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, no site  do Min. do Trabalho e
 #' Previdencia Social.
 #'
-#' @param arqDair uma string contendo o nome do arquivo pdf correspondente ao "DAIR".
+#' @param arqNome uma string contendo o nome do arquivo correspondente ao "DAIR".
+#' @param arqTipo uma string contendo o tipo do arquivo de origem (pdf ou xml)
 #' @return um objeto do tipo data.frame contendo a relacao das aplicacoes financeiras do RPPS.
 #' @author Bruno M. S. S. Melo
 #' @details
 #' Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
+#' OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
 #' @examples
 #' \dontrun{
 #' dfDair <- mtpsImportaDair("DAIR.pdf")
 #' }
 #' @seealso \code{tabulizer::extract_tables}
 #' @export
-mtpsImportaDair <- function(arqDair) {
+mtpsImportaDair <- function(arqNome) {
 
-  lsExtractedDair <- lapply(tabulizer::extract_tables(arqDair), `Encoding<-`, 'UTF-8')
+  lsExtractedDair <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
 
   # Relaciona os nomes dos campos constantes das fichas de aplicações do DAIR
   tokens <- c("Aplicacao No:",

@@ -4,20 +4,22 @@
 #' dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, nos sites de alguns
 #' Institutos de Previdencia de entes federativos que possuem RPPS.
 #'
-#' @param arqDpin uma string contendo o nome do arquivo pdf correspondente ao "DPIN".
+#' @param arqNome uma string contendo o nome do arquivo correspondente ao "DPIN".
+#' @param arqTipo uma string contendo o tipo do arquivo de origem (pdf ou xml)
 #' @return um objeto do tipo data.frame contendo o resumo da politica de investimentos do RPPS.
 #' @author Bruno M. S. S Melo
 #' @details
 #' A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
+#' OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
 #' @examples
 #' \dontrun{
 #' dfDpin <- mtpsImportaDpin("DPIN.pdf")
 #' }
 #' @seealso \code{tabulizer::extract_tables}
 #' @export
-mtpsImportaDpin <- function(arqDpin) {
+mtpsImportaDpin <- function(arqNome, arqTipo) {
 
-  lsExtractedDpin <- lapply(tabulizer::extract_tables(arqDpin), `Encoding<-`, 'UTF-8')
+  lsExtractedDpin <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
 
   fieldNames <- c(
     # "Renda Fixa - Art. 7º",
