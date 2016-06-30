@@ -10,7 +10,7 @@
 #' @author Bruno M. S. S Melo
 #' @details
 #' A funcao extrai tabelas contidas no DIPR de acordo com o estabelecido no parametro \code{opcao}:
-#' OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
+#' OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
 #' \itemize{
 #'   \item \code{opcao = 1} extrai tabela contendo as BASES DE CALCULO DAS CONTRIBUICOES DEVIDAS, RELATIVAS AS FOLHAS DO ENTE.
 #'   \item \code{opcao = 2} extrai tabela contendo as CONTRIBUICOES REPASSADAS.
@@ -39,7 +39,7 @@ mtpsImportaDipr <- function(arqNome, arqTipo, opcao) {
   if (length(opcao) < 1) {stop("Opcao nao fornecida ou invalida.")}
 
   if (arqTipo == "pdf") {
-    lsExtractedDipr <- lapply(tabulizer::extract_tables(arqDipr), `Encoding<-`, 'UTF-8')
+    lsExtractedDipr <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
   } else {
     stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
   }

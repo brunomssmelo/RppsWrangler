@@ -10,7 +10,7 @@
 #' @author Bruno M. S. S. Melo
 #' @details
 #' Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
-#' OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
+#' OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
 #' @examples
 #' \dontrun{
 #' dfDair <- mtpsImportaDair("DAIR.pdf")
@@ -19,7 +19,11 @@
 #' @export
 mtpsImportaDair <- function(arqNome) {
 
-  lsExtractedDair <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+  if (arqTipo == "pdf") {
+    lsExtractedDair <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+  } else {
+    stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
+  }
 
   # Relaciona os nomes dos campos constantes das fichas de aplicações do DAIR
   tokens <- c("Aplicacao No:",

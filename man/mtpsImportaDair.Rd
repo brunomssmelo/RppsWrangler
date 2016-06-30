@@ -21,7 +21,7 @@ Previdencia Social.
 }
 \details{
 Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
-OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
+OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
 }
 \examples{
 \dontrun{

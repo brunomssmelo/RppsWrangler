@@ -10,7 +10,7 @@
 #' @author Bruno M. S. S Melo
 #' @details
 #' A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
-#' OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
+#' OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
 #' @examples
 #' \dontrun{
 #' dfDpin <- mtpsImportaDpin("DPIN.pdf")
@@ -19,26 +19,30 @@
 #' @export
 mtpsImportaDpin <- function(arqNome, arqTipo) {
 
-  lsExtractedDpin <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+  if (arqTipo == "pdf") {
+    lsExtractedDpin <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+  } else {
+    stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
+  }
 
   fieldNames <- c(
     # "Renda Fixa - Art. 7º",
-    "Títulos Tesouro Nacional - SELIC - Art. 7º, I, \"a\"",
-    "FI 100% títulos TN - Art. 7º, I, \"b\"",
-    "Operações Compromissadas - Art. 7º, II",
-    "FI Renda Fixa/Referenciados RF - Art. 7º, III",
-    "FI de Renda Fixa - Art. 7º, IV",
-    "Poupança - Art. 7º, V",
-    "FI em Direitos Creditórios – Aberto - Art. 7º, VI",
-    "FI em Direitos Creditórios – Fechado - Art. 7º, VII, \"a\"",
-    "FI Renda Fixa Crédito Privado - Art. 7º, VII, \"b\"",
+    "Titulos Tesouro Nacional - SELIC - Art. 7o, I, \"a\"",
+    "FI 100% titulos TN - Art. 7o, I, \"b\"",
+    "Operacoes Compromissadas - Art. 7o, II",
+    "FI Renda Fixa/Referenciados RF - Art. 7o, III",
+    "FI de Renda Fixa - Art. 7o, IV",
+    "Poupanca - Art. 7o, V",
+    "FI em Direitos Creditorios - Aberto - Art. 7o, VI",
+    "FI em Direitos Creditorios - Fechado - Art. 7o, VII, \"a\"",
+    "FI Renda Fixa Credito Privado - Art. 7o, VII, \"b\"",
     # "Renda Variável - Art. 8º",
-    "FI Ações referenciados - Art. 8º, I",
-    "FI de Índices Referenciados em Ações - Art. 8º, II",
-    "FI em Ações - Art. 8º, III",
-    "FI Multimercado - aberto - Art. 8º, IV",
-    "FI em Participações - fechado - Art. 8º, V",
-    "FI Imobiliário - cotas negociadas em bolsa - Art. 8º, VI"
+    "FI Acoes referenciados - Art. 8o, I",
+    "FI de Indices Referenciados em Acoes - Art. 8o, II",
+    "FI em Acoes - Art. 8o, III",
+    "FI Multimercado - aberto - Art. 8o, IV",
+    "FI em Participacoes - fechado - Art. 8o, V",
+    "FI Imobiliario - cotas negociadas em bolsa - Art. 8o, VI"
   )
 
   tokens <- stringr::str_replace_all(iconv(enc2native(fieldNames), to = "ASCII//TRANSLIT"), "\"", "")

@@ -21,7 +21,7 @@ Institutos de Previdencia de entes federativos que possuem RPPS.
 }
 \details{
 A funcao extrai a tabela contendo o resumo da alocacao de recursos definida no "DPIN".
-OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
+OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
 }
 \examples{
 \dontrun{

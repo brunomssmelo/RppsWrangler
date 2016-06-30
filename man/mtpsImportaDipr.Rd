@@ -22,7 +22,7 @@ em formato pdf, no site do Min. do Trabalho e Previdencia Social
 }
 \details{
 A funcao extrai tabelas contidas no DIPR de acordo com o estabelecido no parametro \code{opcao}:
-OBS.: Por enquanto a função só extrai de arquivos do tipo "pdf.
+OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
 \itemize{
   \item \code{opcao = 1} extrai tabela contendo as BASES DE CALCULO DAS CONTRIBUICOES DEVIDAS, RELATIVAS AS FOLHAS DO ENTE.
   \item \code{opcao = 2} extrai tabela contendo as CONTRIBUICOES REPASSADAS.
