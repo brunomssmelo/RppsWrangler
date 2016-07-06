@@ -4,7 +4,7 @@
 \alias{mtpsImportaDair}
 \title{Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social.}
 \usage{
-mtpsImportaDair(arqNome)
+mtpsImportaDair(arqNome, arqTipo)
 }
 \arguments{
 \item{arqNome}{uma string contendo o nome do arquivo correspondente ao "DAIR".}

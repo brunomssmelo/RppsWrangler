@@ -25,6 +25,8 @@ mtpsImportaDpin <- function(arqNome, arqTipo) {
     stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
   }
 
+  browser()
+
   fieldNames <- c(
     # "Renda Fixa - Art. 7º",
     "Titulos Tesouro Nacional - SELIC - Art. 7o, I, \"a\"",

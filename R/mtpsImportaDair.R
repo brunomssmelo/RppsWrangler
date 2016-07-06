@@ -17,7 +17,7 @@
 #' }
 #' @seealso \code{tabulizer::extract_tables}
 #' @export
-mtpsImportaDair <- function(arqNome) {
+mtpsImportaDair <- function(arqNome, arqTipo) {
 
   if (arqTipo == "pdf") {
     lsExtractedDair <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
