@@ -4,12 +4,12 @@
 \alias{mtpsImportaDipr}
 \title{Importacao de dados contidos no Demonstrativo de Informacoes Previdenciarias e Repasses (DIPR)}
 \usage{
-mtpsImportaDipr(arqNome, arqTipo, opcao)
+mtpsImportaDipr(caminho, tipo, opcao)
 }
 \arguments{
-\item{arqNome}{uma string contendo o nome do arquivo pdf correspondente ao "DIPR".}
+\item{caminho}{uma string contendo o nome do arquivo pdf correspondente ao "DIPR".}
 
-\item{arqTipo}{uma string contendo o tipo do arquivo de origem (pdf ou xml)}
+\item{tipo}{uma string contendo o tipo da origem: pdf, dir.pdf, xml ou dir.xml)}
 
 \item{opcao}{lista com as opcoes desejadas. Ver detalhes e exemplos abaixo.}
 }
@@ -34,12 +34,19 @@ OBS.: Por enquanto a função so extrai de arquivos do tipo "pdf".
   \item \code{opcao = 8} extrai tabela contendo a REMUNERACAO BRUTA (somatorio das folhas do ENTE e da UNIDADE GESTORA)
   \item \code{opcao = 9} extrai tabela contendo o Nº DE BENEFICIARIOS (somatorio das folhas do ENTE e da UNIDADE GESTORA)
 }
+O parametro \code{tipo} indica o tipo da origem:
+\itemize{
+  \item \code{tipo = "pdf"} o \code{caminho} aponta para um arquivo do tipo pdf
+  \item \code{tipo = "dir.pdf"} o \code{caminho} aponta para um diretorio contendo arquivos do tipo pdf
+  \item \code{tipo = "xml"} o \code{caminho} aponta para um arquivo do tipo xml
+  \item \code{tipo = "dir.xml"} o \code{caminho} aponta para um diretorio contendo arquivos do tipo xml
+}
 }
 \examples{
 \dontrun{
-tabList <- mtpsImportaDpin("arqNome = DIPR.pdf", arqTipo = "pdf", opcao = 1)
+tabList <- mtpsImportaDpin("caminho = DIPR.pdf", tipo = "pdf", opcao = 1)
 
-tabList <- mtpsImportaDpin("arqNome = DIPR.pdf", arqTipo = "pdf", opcao = c(1,3,4)
+tabList <- mtpsImportaDpin("caminho = DIPR.pdf", tipo = "pdf", opcao = c(1,3,4)
 }
 }
 \author{

@@ -3,8 +3,8 @@
 #' Esta funcao extrai os dados contidos no DIPR dos Regimes Proprios de Previdencia Social disponibilizado,
 #' em formato pdf, no site do Min. do Trabalho e Previdencia Social
 #'
-#' @param arqNome uma string contendo o nome do arquivo pdf correspondente ao "DIPR".
-#' @param arqTipo uma string contendo o tipo do arquivo de origem (pdf ou xml)
+#' @param caminho uma string contendo o nome do arquivo pdf correspondente ao "DIPR".
+#' @param tipo uma string contendo o tipo da origem: pdf, dir.pdf, xml ou dir.xml)
 #' @param opcao lista com as opcoes desejadas. Ver detalhes e exemplos abaixo.
 #' @return uma lista de objetos do tipo data.frame contendo as tabelas desejadas.
 #' @author Bruno M. S. S Melo
@@ -22,15 +22,22 @@
 #'   \item \code{opcao = 8} extrai tabela contendo a REMUNERACAO BRUTA (somatorio das folhas do ENTE e da UNIDADE GESTORA)
 #'   \item \code{opcao = 9} extrai tabela contendo o Nº DE BENEFICIARIOS (somatorio das folhas do ENTE e da UNIDADE GESTORA)
 #' }
+#' O parametro \code{tipo} indica o tipo da origem:
+#' \itemize{
+#'   \item \code{tipo = "pdf"} o \code{caminho} aponta para um arquivo do tipo pdf
+#'   \item \code{tipo = "dir.pdf"} o \code{caminho} aponta para um diretorio contendo arquivos do tipo pdf
+#'   \item \code{tipo = "xml"} o \code{caminho} aponta para um arquivo do tipo xml
+#'   \item \code{tipo = "dir.xml"} o \code{caminho} aponta para um diretorio contendo arquivos do tipo xml
+#' }
 #' @examples
 #' \dontrun{
-#' tabList <- mtpsImportaDpin("arqNome = DIPR.pdf", arqTipo = "pdf", opcao = 1)
+#' tabList <- mtpsImportaDpin("caminho = DIPR.pdf", tipo = "pdf", opcao = 1)
 #'
-#' tabList <- mtpsImportaDpin("arqNome = DIPR.pdf", arqTipo = "pdf", opcao = c(1,3,4)
+#' tabList <- mtpsImportaDpin("caminho = DIPR.pdf", tipo = "pdf", opcao = c(1,3,4)
 #' }
 #' @seealso \code{tabulizer::extract_tables}
 #' @export
-mtpsImportaDipr <- function(arqNome, arqTipo, opcao) {
+mtpsImportaDipr <- function(caminho, tipo, opcao) {
 
   tabList <- list()
 
@@ -38,8 +45,8 @@ mtpsImportaDipr <- function(arqNome, arqTipo, opcao) {
 
   if (length(opcao) < 1) {stop("Opcao nao fornecida ou invalida.")}
 
-  if (arqTipo == "pdf") {
-    lsExtractedDipr <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+  if (tipo == "pdf") {
+    lsExtractedDipr <- lapply(tabulizer::extract_tables(caminho), `Encoding<-`, 'UTF-8')
   } else {
     stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
   }
@@ -48,14 +55,14 @@ mtpsImportaDipr <- function(arqNome, arqTipo, opcao) {
 
     switch (as.character(opcao[o]),
             "1" = {tabList[[length(tabList)+1]] <- mtpsImportaDiprTab1(lsExtractedDipr)},
-            "2" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab2(arqNome)}
-            "3" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab3(arqNome)}
-            "4" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab4(arqNome)}
-            "5" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab5(arqNome)}
-            "6" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab6(arqNome)}
-            "7" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab7(arqNome)}
-            "8" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab8(arqNome)}
-            "9" = tabList  #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab9(arqNome)}
+            "2" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab2(caminho)}
+            "3" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab3(caminho)}
+            "4" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab4(caminho)}
+            "5" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab5(caminho)}
+            "6" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab6(caminho)}
+            "7" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab7(caminho)}
+            "8" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab8(caminho)}
+            "9" = tabList  #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab9(caminho)}
     )
   }
 
