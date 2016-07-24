@@ -49,6 +49,11 @@ mtpsImportaDairPdf <- function(caminho) {
   }
   fullText <- iconv(enc2native(fullText), to = "ASCII//TRANSLIT")
 
+  # Extrai o nome do Ente
+  ente <- gsub('^.*(1. ENTE Nome: )\\s*|\\s*( /).*$', '',
+               x = stringr::str_c(apply(lsExtractedDair[[1]], 1, stringr::str_c, collapse=''), collapse = " "))
+  ente <- iconv(enc2native(ente), to = "ASCII//TRANSLIT")
+
   # Localiza a posição dos tokens em todo o texto
   posTokens <- stringr::str_locate_all(fullText,tokens)
 
@@ -169,5 +174,12 @@ mtpsImportaDairPdf <- function(caminho) {
         )
       }, silent = T)}) #try
   }
+
+  dfDair <- data.frame(
+    ENTE = ente,
+    dfDair,
+    stringsAsFactors = F
+  )
+
   return(dfDair[complete.cases(dfDair),])
 }

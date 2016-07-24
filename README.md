@@ -16,5 +16,11 @@ Para a instalação do pacote deve-se proceder da seguinte forma:
 
 ```
 install.packages("devtools")
+
+# instalação de dependências
+devtools::install_github("leeper/tabulizerjars")
+devtools::install_github("leeper/tabulizer")
+
+# instalação do pacote
 devtools::install_github("brunomssmelo/RppsWrangler")
 ```

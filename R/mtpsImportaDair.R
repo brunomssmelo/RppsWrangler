@@ -64,7 +64,7 @@ mtpsImportaDair <- function(caminho, tipo) {
 
     # homogeiniza as informacoes dos fundos ao longo de todo o data.frame dfDair
     dfDair <- merge(
-      x = dfDair[, c("DATA_POSICAO", "CNPJ_FUNDO",
+      x = dfDair[, c("ENTE", "DATA_POSICAO", "CNPJ_FUNDO",
                      "QTD_COTAS", "VALOR_ATUAL_COTA",
                      "VALOR_TOTAL_ATUAL", "PL_FUNDO",
                      "PERC_RECURSOS_RPPS", "PERC_PL_FUNDO")],
