@@ -4,7 +4,9 @@
 #' dos Regimes Proprios de Previdencia Social disponibilizado, em formato pdf, no site  do Min. do Trabalho e
 #' Previdencia Social.
 #'
-#' @param caminho uma string contendo o nome do arquivo correspondente ao "DAIR".
+#' @param caminho uma string contendo o nome do arquivo correspondente ao "DAIR". Caso o parametro "tipo"
+#'        seja "dir.pdf" ou "dir.xml", devera ser passada uma lista de strings contendo o caminho para um
+#'        ou mais diretorios.
 #' @param tipo uma string contendo o tipo do arquivo de origem (pdf ou xml)
 #' @return um objeto do tipo data.frame contendo a relacao das aplicacoes financeiras do RPPS.
 #' @author Bruno M. S. S. Melo
@@ -19,6 +21,10 @@
 #' Obs. 1: Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
 #'
 #' Obs. 2: Por enquanto apenas as origens dos tipos "pdf" e "dir.pdf" estao implementadas.
+#'
+#' Problema conhecido: Numa mesma sessao do R deve-se evitar a importacao de arquivos pdf de mesmo nome,
+#' ainda que estejam em diretorios distintos, dado que apenas os dados do primeiro arquivo "homonino" serao
+#' importados.
 #' @examples
 #' \dontrun{
 #' dfDair <- mtpsImportaDair(caminho = "DAIR.pdf", tipo = "pdf")
@@ -30,22 +36,28 @@ mtpsImportaDair <- function(caminho, tipo) {
   dfDair <- data.frame()
 
   if (tipo == "pdf") {
-    dfDair <- mtpsImportaDairPdf(caminho)
+    dfDair <- mtpsImportaDairPdf(caminho[1])
   }
+
+  browser()
 
   if (tipo == "dir.pdf") {
 
-    currDir <- getwd()
+    pdfFiles <- NULL
+    for (k in 1:length(caminho)) {
+      if (!dir.exists(caminho[k])) {
+        warning(paste( c("Diretorio ", caminho[k], " nao encontrado."), collapse = ""))
 
-    tryCatch(
-      expr = {setwd(caminho)},
-      error = function(c) {paste( c("Diretorio ", caminho, " nao encontrado."), collapse = "")}
-    )
+        next
+      }
 
-    pdfFiles <- list.files("./", pattern = "(\\.[Pp][Dd][Ff]$)")
-    for (p in 1:length(pdfFiles)){
-      dfDair <- rbind(dfDair, mtpsImportaDairPdf(pdfFiles[p]))
+      pdfFiles <- c(
+        pdfFiles,
+        list.files(caminho[k], pattern = "(\\.[Pp][Dd][Ff]$)", full.names = T)
+      )
     }
+
+    dfDair <- do.call("rbind", lapply(pdfFiles, mtpsImportaDairPdf))
 
     # construcao de tabela de informacoes cadastrais
 
@@ -73,7 +85,6 @@ mtpsImportaDair <- function(caminho, tipo) {
       by.y = c("CNPJ_FUNDO")
     )
 
-    setwd(currDir)
   }
 
   dfDair$FUNDO <- iconv(enc2native(as.character(dfDair$FUNDO)), to = "ASCII//TRANSLIT")

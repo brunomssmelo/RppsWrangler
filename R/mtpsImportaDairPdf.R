@@ -16,9 +16,15 @@
 #' @seealso \code{tabulizer::extract_tables}
 mtpsImportaDairPdf <- function(caminho) {
 
-  lsExtractedDair <- lapply(tabulizer::extract_tables(caminho), `Encoding<-`, 'UTF-8')
+  if (!file.exists(caminho)) {
+    warning(paste( c("Arquivo ", caminho, " nao encontrado."), collapse = ""))
 
-  # Relaciona os nomes dos campos constantes das fichas de aplicações do DAIR
+    return(NULL)
+  }
+
+    lsExtractedDair <- lapply(tabulizer::extract_tables(caminho), `Encoding<-`, 'UTF-8')
+
+  # Relaciona os nomes dos campos constantes das fichas de aplicacoes do DAIR
   tokens <- c("Aplicacao No:",
               "Segmento:",
               "Tipo de Ativo:",
@@ -102,9 +108,9 @@ mtpsImportaDairPdf <- function(caminho) {
         dfDair <- rbind(
           dfDair,
           data.frame(
-            ID = ifelse(hasToken[1],
-                        as.integer(stringr::str_trim(stringr::str_sub(text, posTokens[[1]][1,2]+1,posTokens[[2]][1,1]-1))),
-                        NA),
+            # ID = ifelse(hasToken[1],
+            #             as.integer(stringr::str_trim(stringr::str_sub(text, posTokens[[1]][1,2]+1,posTokens[[2]][1,1]-1))),
+            #             NA),
             SEGMENTO = ifelse(hasToken[2],
                               stringr::str_trim(stringr::str_sub(text, posTokens[[2]][1,2]+1,posTokens[[3]][1,1]-1)),
                               ""),
@@ -179,6 +185,20 @@ mtpsImportaDairPdf <- function(caminho) {
     ENTE = ente,
     dfDair,
     stringsAsFactors = F
+  )
+
+  dfDair$CNPJ_FUNDO <- stringr::str_pad(
+    string = dfDair$CNPJ_FUNDO,
+    width = 14,
+    side = "left",
+    pad = "0"
+  )
+
+  dfDair$CNPJ_INSTITUICAO_FINANCEIRA <- stringr::str_pad(
+    string = dfDair$CNPJ_INSTITUICAO_FINANCEIRA,
+    width = 14,
+    side = "left",
+    pad = "0"
   )
 
   return(dfDair[complete.cases(dfDair),])
