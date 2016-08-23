@@ -108,9 +108,9 @@ mtpsImportaDairPdf <- function(caminho) {
         dfDair <- rbind(
           dfDair,
           data.frame(
-            # ID = ifelse(hasToken[1],
-            #             as.integer(stringr::str_trim(stringr::str_sub(text, posTokens[[1]][1,2]+1,posTokens[[2]][1,1]-1))),
-            #             NA),
+            ORDEM_DAIR = ifelse(hasToken[1],
+                                as.integer(stringr::str_trim(stringr::str_sub(text, posTokens[[1]][1,2]+1,posTokens[[2]][1,1]-1))),
+                                NA),
             SEGMENTO = ifelse(hasToken[2],
                               stringr::str_trim(stringr::str_sub(text, posTokens[[2]][1,2]+1,posTokens[[3]][1,1]-1)),
                               ""),

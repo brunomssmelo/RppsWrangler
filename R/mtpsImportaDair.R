@@ -39,8 +39,6 @@ mtpsImportaDair <- function(caminho, tipo) {
     dfDair <- mtpsImportaDairPdf(caminho[1])
   }
 
-  browser()
-
   if (tipo == "dir.pdf") {
 
     pdfFiles <- NULL
@@ -76,8 +74,8 @@ mtpsImportaDair <- function(caminho, tipo) {
 
     # homogeiniza as informacoes dos fundos ao longo de todo o data.frame dfDair
     dfDair <- merge(
-      x = dfDair[, c("ENTE", "DATA_POSICAO", "CNPJ_FUNDO",
-                     "QTD_COTAS", "VALOR_ATUAL_COTA",
+      x = dfDair[, c("ENTE", "DATA_POSICAO", "ORDEM_DAIR",
+                     "CNPJ_FUNDO", "QTD_COTAS", "VALOR_ATUAL_COTA",
                      "VALOR_TOTAL_ATUAL", "PL_FUNDO",
                      "PERC_RECURSOS_RPPS", "PERC_PL_FUNDO")],
       y = dfCadastro,
@@ -95,5 +93,5 @@ mtpsImportaDair <- function(caminho, tipo) {
   dfDair$PERC_RECURSOS_RPPS <- as.character(dfDair$PERC_RECURSOS_RPPS)
   dfDair$DATA_POSICAO <- as.Date(dfDair$DATA_POSICAO, format = "%d/%m/%Y")
 
-  dfDair
+  dfDair[with(dfDair, order(ENTE, DATA_POSICAO, SEGMENTO, FUNDO)), ]
 }

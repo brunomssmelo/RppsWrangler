@@ -7,7 +7,9 @@
 mtpsImportaDair(caminho, tipo)
 }
 \arguments{
-\item{caminho}{uma string contendo o nome do arquivo correspondente ao "DAIR".}
+\item{caminho}{uma string contendo o nome do arquivo correspondente ao "DAIR". Caso o parametro "tipo"
+seja "dir.pdf" ou "dir.xml", devera ser passada uma lista de strings contendo o caminho para um
+ou mais diretorios.}
 
 \item{tipo}{uma string contendo o tipo do arquivo de origem (pdf ou xml)}
 }
@@ -30,6 +32,10 @@ O parametro \code{tipo} indica o tipo da origem:
 Obs. 1: Na presente versao apenas as aplicacoes financeiras realizadas em fundos de investimento sao extraidas.
 
 Obs. 2: Por enquanto apenas as origens dos tipos "pdf" e "dir.pdf" estao implementadas.
+
+Problema conhecido: Numa mesma sessao do R deve-se evitar a importacao de arquivos pdf de mesmo nome,
+ainda que estejam em diretorios distintos, dado que apenas os dados do primeiro arquivo "homonino" serao
+importados.
 }
 \examples{
 \dontrun{
