@@ -1,14 +1,14 @@
-#' Importacao de dados contidos no DAIR disponiblizado no site do Min. do Trabalho e Previdencia Social.
+#' Extracao de texto contido em arquivo do tipo pdf.
 #'
 #' Esta funcao utiliza a funcao \code{readPDF}, do pacote \code{tm} (Text Mining) para extrair
 #' o texto contido num arquivo pdf.
 #'
-#' @param uri uma string contendo o nome do arquivo correspondente ao "DAIR".
+#' @param uri uma string contendo o nome do arquivo (ou caminho completo) do arquivo pdf.
 #' @return um objeto do tipo \code{character} contendo o texto extraido do arquivo pdf.
 #' @author Bruno M. S. S. Melo
 #' @examples
 #' \dontrun{
-#' dfDair <- fullText <- extractPdfText(uri = "DAIR.pdf", enconding = 'UTF-8')
+#' fullText <- extractPdfText(uri = "DAIR.pdf", enconding = 'UTF-8')
 #' }
 #' @seealso \code{tm::readPDF}
 utilExtractPdfText <- function(uri, enconding = 'UTF-8'){
