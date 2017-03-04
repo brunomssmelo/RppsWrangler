@@ -3,3 +3,4 @@
 export(mtpsImportaDair)
 export(mtpsImportaDipr)
 export(mtpsImportaDpin)
+export(mtpsImportaDairPdf)

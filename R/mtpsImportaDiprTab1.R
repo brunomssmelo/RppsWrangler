@@ -3,15 +3,15 @@
 #' Esta funcao extrai os dados contidos no DIPR dos Regimes Proprios de Previdencia Social disponibilizado,
 #' em formato pdf, no site do Min. do Trabalho e Previdencia Social
 #'
-#' @param lsExtractedDipr saida da funcao \code{tabulizer::extract_tables} aplicada num arquivo pdf contendo a DIPR.
+#' @param txtExtractedDipr saida da funcao \code{utilExtractPdfText} aplicada num arquivo pdf contendo a DIPR.
 #' @return um objeto do tipo data.frame contendo a tabela desejada.
 #' @author Bruno M. S. S Melo
 #' @details
 #' extrai tabela contendo as BASES DE CALCULO DAS CONTRIBUICOES DEVIDAS, RELATIVAS AS FOLHAS DO ENTE.
-mtpsImportaDiprTab1 <- function(lsExtractedDipr) {
+mtpsImportaDiprTab1 <- function(txtExtractedDipr) {
 
   # retira caracteres acentuados
-  tab1 <- iconv(enc2native(lsExtractedDipr[[1]]), to = "ASCII//TRANSLIT")
+  # tab1 <- iconv(enc2native(lsExtractedDipr[[1]]), to = "ASCII//TRANSLIT")
 
   # retira separadores de milhares
   tab1 <- gsub(x = tab1, pattern = "([0-9])\\.([0-9])", replacement= "\\1\\2")

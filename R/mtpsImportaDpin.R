@@ -15,17 +15,16 @@
 #' \dontrun{
 #' dfDpin <- mtpsImportaDpin("DPIN.pdf")
 #' }
-#' @seealso \code{tabulizer::extract_tables}
+#' @seealso \code{tm::readPDF}
 #' @export
 mtpsImportaDpin <- function(arqNome, arqTipo) {
 
   if (arqTipo == "pdf") {
-    lsExtractedDpin <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+    # lsExtractedDpin <- lapply(tabulizer::extract_tables(arqNome), `Encoding<-`, 'UTF-8')
+    fullText <- utilExtractPdfText(uri = arqNome, enconding = 'UTF-8')
   } else {
     stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
   }
-
-  browser()
 
   fieldNames <- c(
     # "Renda Fixa - Art. 7º",
@@ -49,16 +48,16 @@ mtpsImportaDpin <- function(arqNome, arqTipo) {
 
   tokens <- stringr::str_replace_all(iconv(enc2native(fieldNames), to = "ASCII//TRANSLIT"), "\"", "")
 
-  numPdfPages <- length(lsExtractedDpin)
-
-  fullText <- ""
-  for (p in 1:numPdfPages) {
-
-    page  <- lsExtractedDpin[[p]]
-    fullText <- stringr::str_c(fullText,
-                               stringr::str_c(apply(page, 1, stringr::str_c, collapse=''), collapse = " "))
-  }
-  fullText <- stringr::str_replace_all(iconv(enc2native(fullText), to = "ASCII//TRANSLIT"), "\"", "")
+  # numPdfPages <- length(lsExtractedDpin)
+  #
+  # fullText <- ""
+  # for (p in 1:numPdfPages) {
+  #
+  #   page  <- lsExtractedDpin[[p]]
+  #   fullText <- stringr::str_c(fullText,
+  #                              stringr::str_c(apply(page, 1, stringr::str_c, collapse=''), collapse = " "))
+  # }
+  # fullText <- stringr::str_replace_all(iconv(enc2native(fullText), to = "ASCII//TRANSLIT"), "\"", "")
 
   # Localiza a posição dos tokens em todo o texto
   posTokens <- stringr::str_locate_all(fullText,tokens)

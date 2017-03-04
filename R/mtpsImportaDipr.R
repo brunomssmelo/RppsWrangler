@@ -35,7 +35,7 @@
 #'
 #' tabList <- mtpsImportaDpin("caminho = DIPR.pdf", tipo = "pdf", opcao = c(1,3,4)
 #' }
-#' @seealso \code{tabulizer::extract_tables}
+#' @seealso \code{tm::readPDF}
 #' @export
 mtpsImportaDipr <- function(caminho, tipo, opcao) {
 
@@ -46,7 +46,8 @@ mtpsImportaDipr <- function(caminho, tipo, opcao) {
   if (length(opcao) < 1) {stop("Opcao nao fornecida ou invalida.")}
 
   if (tipo == "pdf") {
-    lsExtractedDipr <- lapply(tabulizer::extract_tables(caminho), `Encoding<-`, 'UTF-8')
+    # lsExtractedDipr <- lapply(tabulizer::extract_tables(caminho), `Encoding<-`, 'UTF-8')
+    txtExtractedDipr <- utilExtractPdfText(uri = arqNome, enconding = 'UTF-8')
   } else {
     stop("Apenas arquivos do tipo pdf podem ser extraidos na presente versao.")
   }
@@ -54,7 +55,7 @@ mtpsImportaDipr <- function(caminho, tipo, opcao) {
   for (o in 1:length(opcao)) {
 
     switch (as.character(opcao[o]),
-            "1" = {tabList[[length(tabList)+1]] <- mtpsImportaDiprTab1(lsExtractedDipr)},
+            "1" = {tabList[[length(tabList)+1]] <- mtpsImportaDiprTab1(txtExtractedDipr)},
             "2" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab2(caminho)}
             "3" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab3(caminho)}
             "4" = tabList, #{tabList[[length(tabList)+1]] <- mtpsImportaDiprTab4(caminho)}
